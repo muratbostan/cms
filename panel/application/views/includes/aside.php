@@ -91,21 +91,21 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)">
+        <a href="<?php echo base_url('News')?>">
             <i class="menu-icon fa fa-newspaper-o"></i>
             <span class="menu-text">Haberler</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?php echo base_url('References') ?>">
+            <i class="menu-icon zmdi zmdi-check zmdi-hc-lg"></i>
+            <span class="menu-text">Referanslar</span>
           </a>
         </li>
         <li>
           <a href="javascript:void(0)">
             <i class="menu-icon fa fa-calendar"></i>
             <span class="menu-text">Eğitimler</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">
-            <i class="menu-icon zmdi zmdi-check zmdi-hc-lg"></i>
-            <span class="menu-text">Referanslar</span>
           </a>
         </li>
         <li>

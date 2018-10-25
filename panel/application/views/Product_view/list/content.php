@@ -1,62 +1,70 @@
 <div class="row">
   <div class="col-md-12">
-    <h4>Ürün Listesi
-      <a href="<?php echo base_url("Product/add_product") ?>"
-        class="btn pull-right btn-outline btn-primary btn-xs "><i class="fa fa-plus"></i>Yeni Ekle</a>
-      </h4>
-    </div>
-    <div class="col-md-12">
-      <div class="widget p-lg">
-        <?php if(empty($items)) { ?>
-          <div class="alert alert-info text-center" role="alert">
-            <span>Kayıt Bulunamadı.Eklemek için lütfen</span>
-            <a href="<?php echo base_url("Product/add_product") ?>" class="alert-link">Tıklayın</a>
-          </div>
-        <?php } else { ?>
-          <table class="table table-hover table-striped table-bordered content-container">
-            <thead>
-              <th><i class="fa fa-reorder"></i></th>
-              <th>id</th>
-              <th>Başlık</th>
-              <th>url</th>
-              <th>Açıklama</th>
-              <th>Durumu</th>
-              <th>İşlem</th>
-            </thead>
-            <tbody class="sortable" data-url="<?php echo base_url("Product/rankSet")?>">
-              <?php foreach ($items as $items) { ?>
-                <tr id="tr-<?php echo $items->id; ?>">
-                  <td><i class="fa fa-reorder"></i></td>
-                  <td><?php echo $items->id ?></td>
-                  <td><?php echo $items->title ?></td>
-                  <td><?php echo $items->url?></td>
-                  <td><?php echo $items->description ?></td>
-                  <td>
-                    <input
-                    data-url="<?php echo base_url("Product/isActiveSet/$items->id")?>"
-                    type="checkbox"
-                    class="isActive"
-                    data-switchery
-                    data-color="#10c469"
-                    <?php echo ($items->isActive) ? "checked" : "" ; ?>
-                    />
-                  </td>
-                  <td>
-                    <button
-                    data-url="<?php echo base_url("Product/delete_product/$items->id")?>"
-                    class="btn btn-sm btn-danger remove-btn">
-                    <i class="fa fa-trash">Sil</i>
-                    </button>
-                    <a href="<?php echo base_url("Product/update_product/$items->id") ?>"
-                    class="btn btn-sm btn-info "><i class="fa fa-pencil-square-o">Düzenle</i></a>
-                    <a href="<?php echo base_url("Product/image_form/$items->id") ?>"
-                    class="btn btn-sm btn-success "><i class="fa fa-image">Resimler</i></a>
-                    </td>
-                  </tr>
-                <?php } ?>
-              </tbody>
-            </table>
+    <h4 class="m-b-lg">
+      Ürün Listesi
+      <a href="<?php echo base_url("product/add_product"); ?>" class="btn btn-outline btn-primary btn-xs pull-right"> <i class="fa fa-plus"></i> Yeni Ekle</a>
+    </h4>
+  </div><!-- END column -->
+  <div class="col-md-12">
+    <div class="widget p-lg">
+
+      <?php if(empty($items)) { ?>
+
+        <div class="alert alert-info text-center">
+          <p>Burada herhangi bir veri bulunmamaktadır. Eklemek için lütfen <a href="<?php echo base_url("product/add_product"); ?>">tıklayınız</a></p>
+        </div>
+
+      <?php } else { ?>
+
+        <table class="table table-hover table-striped table-bordered content-container">
+          <thead>
+            <th class="order"><i class="fa fa-reorder"></i></th>
+            <th class="w50">#id</th>
+            <th>Başlık</th>
+            <th>url</th>
+            <th>Açıklama</th>
+            <th>Durumu</th>
+            <th>İşlem</th>
+          </thead>
+          <tbody class="sortable" data-url="<?php echo base_url("product/rankSet"); ?>">
+
+            <?php foreach($items as $items) { ?>
+
+              <tr id="ord-<?php echo $items->id; ?>">
+                <td class="order"><i class="fa fa-reorder"></i></td>
+                <td class="w50 text-center">#<?php echo $items->id; ?></td>
+                <td><?php echo $items->title; ?></td>
+                <td><?php echo $items->url; ?></td>
+                <td><?php echo $items->description; ?></td>
+                <td>
+                  <input
+                  data-url="<?php echo base_url("product/isActiveSet/$items->id"); ?>"
+                  class="isActive"
+                  type="checkbox"
+                  data-switchery
+                  data-color="#10c469"
+                  <?php echo ($items->isActive) ? "checked" : ""; ?>
+                  />
+                </td>
+                <td>
+                  <button
+                  data-url="<?php echo base_url("product/delete_product/$items->id"); ?>"
+                  class="btn btn-sm btn-danger btn-outline remove-btn">
+                  <i class="fa fa-trash"></i> Sil
+                </button>
+                <a href="<?php echo base_url("product/update_product/$items->id"); ?>" class="btn btn-sm btn-info btn-outline"><i class="fa fa-pencil-square-o"></i> Düzenle</a>
+                <a href="<?php echo base_url("product/image_form/$items->id"); ?>" class="btn btn-sm btn-dark btn-outline"><i class="fa fa-image"></i> Resimler</a>
+              </td>
+            </tr>
+
           <?php } ?>
-        </div><!-- .widget -->
-      </div>
-    </div>
+
+        </tbody>
+
+      </table>
+
+    <?php } ?>
+
+  </div><!-- .widget -->
+</div><!-- END column -->
+</div>

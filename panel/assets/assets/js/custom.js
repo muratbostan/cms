@@ -1,11 +1,5 @@
 $(document).ready(function(){
 
-  iziToast.show({
-    title: 'Hey',
-    message: 'What would you like to add?',
-    position:'TopCenter'
-  });
-  <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
   $(".sortable").sortable();
   <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
     $(".content-container,.image-list-container").on('click','.remove-btn',function(){
@@ -69,7 +63,6 @@ $(document).ready(function(){
   });
   <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
   var uploadSection = Dropzone.forElement("#dropzone");
-
   uploadSection.on("complete", function(file){
 
     var $data_url =$("#dropzone").data("url");
