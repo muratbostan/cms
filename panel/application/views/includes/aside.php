@@ -66,17 +66,11 @@
             <span class="menu-text">Settings</span>
           </a>
         </li>
-        <li class="has-submenu">
-          <a href="javascript:void(0)" class="submenu-toggle">
+        <li>
+          <a href="<?php echo base_url('Galleries') ?>">
             <i class="menu-icon zmdi zmdi-apps zmdi-hc-lg"></i>
             <span class="menu-text">Galeriler</span>
-            <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
           </a>
-          <ul class="submenu">
-            <li><a href="#"><span class="menu-text">Resim Galerisi</span></a></li>
-            <li><a href="#"><span class="menu-text">Video Galerisi</span></a></li>
-            <li><a href="#"><span class="menu-text">Dosya Galerisi</span></a></li>
-          </ul>
         </li>
         <li>
           <a href="javascript:void(0)">
@@ -91,25 +85,25 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)">
+        <a href="<?php echo base_url('News')?>">
             <i class="menu-icon fa fa-newspaper-o"></i>
             <span class="menu-text">Haberler</span>
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)">
-            <i class="menu-icon fa fa-calendar"></i>
-            <span class="menu-text">Eğitimler</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">
+          <a href="<?php echo base_url('References') ?>">
             <i class="menu-icon zmdi zmdi-check zmdi-hc-lg"></i>
             <span class="menu-text">Referanslar</span>
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)">
+          <a href="<?php echo base_url('Courses') ?>">
+            <i class="menu-icon fa fa-calendar"></i>
+            <span class="menu-text">Eğitimler</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?php echo base_url('Brands') ?>">
             <i class="menu-icon zmdi zmdi-puzzle-piece zmdi-hc-lg"></i>
             <span class="menu-text">Markalar</span>
           </a>

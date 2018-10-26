@@ -17,4 +17,5 @@
 <script src="<?php echo base_url("assets");?>/assets/js/fullcalendar.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url("assets");?>/assets/js/sweetalert2.all.min.js"></script>
- 
+<script src="<?php echo base_url("assets");?>/assets/js/iziToast.min.js"></script>
+ <?php $this->load->view("includes/alert");

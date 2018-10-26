@@ -1,13 +1,7 @@
 $(document).ready(function(){
 
-  iziToast.show({
-    title: 'Hey',
-    message: 'What would you like to add?',
-    position:'TopCenter'
-  });
-  <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
   $(".sortable").sortable();
-  <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
+  <!--  Sil Butonu Ayarları   -->
     $(".content-container,.image-list-container").on('click','.remove-btn',function(){
     var $data_url= $(this).data("url");
     swal({
@@ -26,7 +20,7 @@ $(document).ready(function(){
       }
     })
   });
-  <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
+  <!--  Aktif - Pasif Butonunnun Ayarlarları   -->
   $(".content-container,.image-list-container").on('change','.isActive',function(){
     var $data=$(this).prop("checked");
     var $data_url=$(this).data("url");
@@ -35,7 +29,7 @@ $(document).ready(function(){
       });
     }
   });
-  <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
+  <!--  Kapak Fotoğrafının Ayarları   -->
   $(".image-list-container").on('change','.isCover',function(){
     var $data=$(this).prop("checked");
     var $data_url=$(this).data("url");
@@ -60,16 +54,18 @@ $(document).ready(function(){
 
     }
   });
-  <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
+  <!--  Sıralamanın Ayarları   -->
   $(".content-container,.image-list-container").on('sortupdate','.sortable',function(event,ui){
 
     var $data= $(this).sortable("serialize");
     var $data_url =$(this).data("url");
-    $.post($data_url,{data:$data},function(response){});
-  });
-  <!--  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
-  var uploadSection = Dropzone.forElement("#dropzone");
+    $.post($data_url,{data:$data},function(response){
 
+    });
+  });
+
+  <!--  Dropzone Ayarları   -->
+  var uploadSection = Dropzone.forElement("#dropzone");
   uploadSection.on("complete", function(file){
 
     var $data_url =$("#dropzone").data("url");

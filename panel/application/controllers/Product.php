@@ -38,7 +38,8 @@ class Product extends CI_Controller
     {
       $insert=$this->Product_model->
       add(
-        array("title"      =>$this->input->post("title"),
+        array(
+        "title"      =>$this->input->post("title"),
         "description"=>$this->input->post("description"),
         "url"        =>convertToSEO($this->input->post("title")),
         "isActive"   => 1,
@@ -48,12 +49,24 @@ class Product extends CI_Controller
 
     if($insert)
     {
-      redirect(base_url(product));
+      $alert =array(
+        "title" => "İşlem Başarılı..",
+        "text" => "İşlem Başarılı Bir Şekilde Gerçekleşti..",
+        "type" => "success"
+      );
+
     }
     else
     {
-      redirect(base_url(product));
+      $alert =array(
+        "title" => "İşlem Başarısız..",
+        "text" => "İşlem Sırasında Bir Hata Oluştu...",
+        "type" => "error"
+      );
     }
+    $this->session->set_flashdata("alert",$alert);
+    redirect(base_url(product));
+
   }
   else
   {
@@ -90,7 +103,8 @@ public function update($id)
       array(
         "id" => $id
       ),
-      array("title"      =>$this->input->post("title"),
+      array(
+      "title"      =>$this->input->post("title"),
       "description"=>$this->input->post("description"),
       "url"        =>convertToSEO($this->input->post("title")),
     )
@@ -98,12 +112,23 @@ public function update($id)
 
   if($update)
   {
-    redirect(base_url(product));
+    $alert =array(
+      "title" => "İşlem Başarılı..",
+      "text" => "Güncelleme Başarılı Bir Şekilde Gerçekleşti..",
+      "type" => "success"
+    );
+
   }
   else
   {
-    redirect(base_url(product));
+    $alert =array(
+      "title" => "İşlem Başarısız..",
+      "text" => "Güncelleme Sırasında Bir Hata Oluştu...",
+      "type" => "error"
+    );
   }
+  $this->session->set_flashdata("alert",$alert);
+  redirect(base_url(product));
 }
 else
 {
@@ -130,11 +155,23 @@ public function delete_product($id)
 
     if($delete)
     {
-      redirect (base_url("product"));
+      $alert =array(
+        "title" => "İşlem Başarılı..",
+        "text" => "Kayıt Başarılı Bir Şekilde Silindi..",
+        "type" => "success"
+      );
+
     }
-    else {
-      redirect (base_url("product"));
+    else
+    {
+      $alert =array(
+        "title" => "İşlem Başarısız..",
+        "text" => "Kayıt Silme Sırasında Bir Hata Oluştu...",
+        "type" => "error"
+      );
     }
+    $this->session->set_flashdata("alert",$alert);
+    redirect(base_url(product));
   }
   public function image_delete($id,$parent_id)
   {
@@ -231,10 +268,10 @@ public function delete_product($id)
           $this->Product_model->update(
             array(
               "id"      =>$id,
-              "rank !=" => $rank
+              "rank !=" =>$rank
             ),
             array(
-              "rank" =>$rank
+              "rank"    =>$rank
             )
           );
         }

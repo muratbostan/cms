@@ -10,4 +10,7 @@ function convertToSEO($text){
 
 }
 
- 
+function getReadebleDate($date)
+{
+  return strftime('%e %B %Y',strtotime($date));
+}
