@@ -30,7 +30,6 @@
           <tbody class="sortable" data-url="<?php echo base_url("product/rankSet"); ?>">
 
             <?php foreach($items as $items) { ?>
-
               <tr id="tr-<?php echo $items->id; ?>">
                 <td class="order"><i class="fa fa-reorder"></i></td>
                 <td class="w50 text-center">#<?php echo $items->id; ?></td>
@@ -57,15 +56,10 @@
                 <a href="<?php echo base_url("product/image_form/$items->id"); ?>" class="btn btn-sm btn-dark btn-outline"><i class="fa fa-image"></i> Resimler</a>
               </td>
             </tr>
-
           <?php } ?>
-
         </tbody>
-
       </table>
-
     <?php } ?>
-
   </div><!-- .widget -->
 </div><!-- END column -->
 </div>

@@ -268,10 +268,10 @@ public function delete_product($id)
           $this->Product_model->update(
             array(
               "id"      =>$id,
-              "rank !=" =>$rank
+              "rank !=" => $rank
             ),
             array(
-              "rank"    =>$rank
+              "rank" =>$rank
             )
           );
         }

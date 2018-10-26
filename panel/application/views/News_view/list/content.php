@@ -26,6 +26,7 @@
               <th>İşlem</th>
             </thead>
             <tbody class="sortable" data-url="<?php echo base_url("news/rankSet")?>">
+
               <?php foreach ($items as $items) { ?>
                 <tr id="tr-<?php echo $items->id; ?>">
                   <td><i class="fa fa-reorder"></i></td>
