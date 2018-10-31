@@ -40,7 +40,7 @@
                     <?php echo $items->url?>
                   </td>
                   <td>
-                    <?php echo $items->description ?>
+                    <?php echo character_limiter(strip_tags($items->description),150); ?>
                   </td>
                   <td>
                     <?php echo $items->news_type ?>

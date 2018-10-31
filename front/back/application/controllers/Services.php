@@ -4,8 +4,7 @@ class Services extends CI_Controller
 {
     public $viewFolder = "";
 
-    public function __construct()
-    {
+    public function __construct(){
 
         parent::__construct();
 
@@ -18,7 +17,6 @@ class Services extends CI_Controller
         }
 
     }
-
     public function index(){
 
         $viewData = new stdClass();
@@ -35,7 +33,6 @@ class Services extends CI_Controller
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
-
     public function new_form(){
 
         $viewData = new stdClass();
@@ -47,7 +44,6 @@ class Services extends CI_Controller
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 
     }
-
     public function save(){
 
         $this->load->library("form_validation");
@@ -155,7 +151,6 @@ class Services extends CI_Controller
         }
 
     }
-
     public function update_form($id){
 
         $viewData = new stdClass();
@@ -176,8 +171,6 @@ class Services extends CI_Controller
 
 
     }
-
-
     public function update($id){
 
         $this->load->library("form_validation");
@@ -279,41 +272,48 @@ class Services extends CI_Controller
         }
 
     }
-
     public function delete($id){
-
+        $fileName=$this->service_model->get(
+        array(
+          "id" => $id
+        ));
         $delete = $this->service_model->delete(
-            array(
-                "id"    => $id
-            )
+          array(
+            "id"    => $id
+          )
         );
-
-        // TODO Alert Sistemi Eklenecek...
-        if($delete){
-
-            $alert = array(
-                "title" => "İşlem Başarılı",
-                "text" => "Kayıt başarılı bir şekilde silindi",
-                "type"  => "success"
+        if($delete)
+        {
+          $img1="uploads/{$this->viewFolder}/350x217/$fileName->img_url";
+          $img2="uploads/{$this->viewFolder}/555x343/$fileName->img_url";
+          if(unlink($img1) && unlink($img2)){
+            $alert =array(
+              "title" => "İşlem Başarılı..",
+              "text" => "Fotoğraf Silme Başarılı Bir Şekilde Gerçekleşti..",
+              "type" => "success"
             );
-
-        } else {
-
-            $alert = array(
-                "title" => "İşlem Başarılı",
-                "text" => "Kayıt silme sırasında bir problem oluştu",
-                "type"  => "error"
+          }
+          else
+          {
+            $alert =array(
+              "title" => "İşlem Başarısız..",
+              "text" => "Fotoğraf Silinirken Bir Hata Oluştu...",
+              "type" => "error"
             );
-
-
+          }
+        }
+        else
+        {
+          $alert =array(
+            "title" => "İşlem Başarısız..",
+            "text" => "Kayıt Silme Sırasında Bir Hata Oluştu...",
+            "type" => "error"
+          );
         }
 
         $this->session->set_flashdata("alert", $alert);
         redirect(base_url("services"));
-
-
-    }
-
+      }
     public function isActiveSetter($id){
 
         if($id){
@@ -330,7 +330,6 @@ class Services extends CI_Controller
             );
         }
     }
-
     public function rankSetter(){
 
 

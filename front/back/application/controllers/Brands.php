@@ -4,8 +4,7 @@ class Brands extends CI_Controller
 {
   public $viewFolder = "";
 
-  public function __construct()
-  {
+  public function __construct(){
     parent::__construct();
     $this->viewFolder = "brands_view";
     $this->load->model("brand_model");
@@ -17,17 +16,14 @@ class Brands extends CI_Controller
 
     $viewData = new stdClass();
     $items = $this->brand_model->get_all(
-      array(), "rank ASC"
+      array()
     );
-
-    /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
     $viewData->viewFolder = $this->viewFolder;
     $viewData->subViewFolder = "list";
     $viewData->items = $items;
 
     $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
   }
-
   public function add_Brands(){
 
     $viewData = new stdClass();
@@ -39,7 +35,6 @@ class Brands extends CI_Controller
     $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 
   }
-
   public function saved(){
 
     $this->load->library("form_validation");
@@ -146,8 +141,6 @@ class Brands extends CI_Controller
     $viewData->item = $item;
     $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
   }
-
-
   public function update($id){
 
     $this->load->library("form_validation");
@@ -244,30 +237,41 @@ class Brands extends CI_Controller
     }
 
   }
-
   public function delete_Brands($id){
-
+    $fileName=$this->brand_model->get(
+      array(
+        "id" => $id
+      ));
     $delete = $this->brand_model->delete(
       array(
         "id"    => $id
       )
     );
-
-    // TODO Alert Sistemi Eklenecek...
-    if($delete){
-
-      $alert = array(
-        "title" => "İşlem Başarılı",
-        "text" => "Kayıt başarılı bir şekilde silindi",
-        "type"  => "success"
-      );
-
-    } else {
-
-      $alert = array(
-        "title" => "İşlem Başarılı",
-        "text" => "Kayıt silme sırasında bir problem oluştu",
-        "type"  => "error"
+    if($delete)
+    {
+      $img1="uploads/{$this->viewFolder}/350x216/$fileName->img_url";
+      if(unlink($img1)){
+        $alert =array(
+          "title" => "İşlem Başarılı..",
+          "text" => "Fotoğraf Silme Başarılı Bir Şekilde Gerçekleşti..",
+          "type" => "success"
+        );
+      }
+      else
+      {
+        $alert =array(
+          "title" => "İşlem Başarısız..",
+          "text" => "Fotoğraf Silinirken Bir Hata Oluştu...",
+          "type" => "error"
+        );
+      }
+    }
+    else
+    {
+      $alert =array(
+        "title" => "İşlem Başarısız..",
+        "text" => "Kayıt Silme Sırasında Bir Hata Oluştu...",
+        "type" => "error"
       );
     }
     $this->session->set_flashdata("alert", $alert);
@@ -275,7 +279,6 @@ class Brands extends CI_Controller
 
 
   }
-
   public function isActiveSetter($id){
 
     if($id){
@@ -292,7 +295,6 @@ class Brands extends CI_Controller
       );
     }
   }
-
   public function rankSetter(){
 
 

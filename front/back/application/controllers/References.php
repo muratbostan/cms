@@ -3,8 +3,7 @@
 class References extends CI_Controller
 {
   public $viewFolder="";
-  public function __construct()
-  {
+  public function __construct(){
     parent::__construct();
 
     $this->viewFolder="references_view";
@@ -13,8 +12,7 @@ class References extends CI_Controller
         redirect(base_url("login"));
     }
   }
-  public function index()
-  {
+  public function index(){
     $viewData = new stdClass();
     //Tablodan veri getirilmesi
     $items=$this->Reference_model->get_all(array(),"rank ASC");
@@ -25,15 +23,13 @@ class References extends CI_Controller
     $viewData->items=$items;
     $this->load->view("{$this->viewFolder}/{$viewData->subViewFolder}/index",$viewData);
   }
-  public function add_References()
-  {
+  public function add_References(){
     $viewData = new stdClass();
     $viewData->viewFolder=$this->viewFolder;
     $viewData->subViewFolder="add";
     $this->load->view("{$this->viewFolder}/{$viewData->subViewFolder}/index",$viewData);
   }
-  public function saved()
-  {
+  public function saved(){
     $this->load->library("form_validation");
 
     if($_FILES["img_url"]["name"] == ""){
@@ -51,8 +47,7 @@ class References extends CI_Controller
     $this->form_validation->set_rules("title","Başlık","required|trim");
     $validation=$this->form_validation->run();
 
-    if($validation)
-    {
+    if($validation){
 
       $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
       $image_80x80 = upload_picture($_FILES["img_url"]["tmp_name"], "uploads/$this->viewFolder",80,80, $file_name);
@@ -117,9 +112,7 @@ class References extends CI_Controller
       $this->load->view("{$this->viewFolder}/{$viewData->subViewFolder}/index",$viewData);
     }
   }
-
-  public function update_References($id)
-  {
+  public function update_References($id){
     $viewData = new stdClass();
     $item=$this->Reference_model->
     get(
@@ -132,8 +125,7 @@ class References extends CI_Controller
     $viewData->item=$item;
     $this->load->view("{$this->viewFolder}/{$viewData->subViewFolder}/index",$viewData);
   }
-  public function update($id)
-  {
+  public function update($id){
 
     $this->load->library("form_validation");
     $this->form_validation->set_rules("title", "Başlık", "required|trim");
@@ -219,9 +211,11 @@ class References extends CI_Controller
       $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
   }
-
-  public function delete_References($id)
-  {
+  public function delete_References($id){
+    $file_name=$this->Reference_model->get(
+      array(
+        "id" => $id
+      ));
     $delete=$this->Reference_model->delete(
       array(
         "id" => $id
@@ -229,26 +223,34 @@ class References extends CI_Controller
 
       if($delete)
       {
-        $alert =array(
-          "title" => "İşlem Başarılı..",
-          "text" => "Kayıt Başarılı Bir Şekilde Silindi..",
-          "type" => "success"
-        );
+        $img1="uploads/{$this->viewFolder}/80x80/$file_name->img_url";
+        $img2="uploads/{$this->viewFolder}/555x343/$file_name->img_url";
 
+        if(unlink($img1) && unlink($img2)){
+          $alert =array(
+            "title" => "İşlem Başarılı..",
+            "text" => "Fotoğraf Silme Başarılı Bir Şekilde Gerçekleşti..",
+            "type" => "success"
+          );
+        }
+        else{
+          $alert =array(
+            "title" => "İşlem Başarısız..",
+            "text" => "Fotoğraf Silinirken Bir Hata Oluştu...",
+            "type" => "error"
+          );
+        }
       }
-      else
-      {
+      else {
         $alert =array(
           "title" => "İşlem Başarısız..",
-          "text" => "Kayıt Silme Sırasında Bir Hata Oluştu...",
-          "type" => "error"
+          "text" =>  "Bir Hata Oluştu...",
+          "type" =>  "error"
         );
-      }
-      $this->session->set_flashdata("alert",$alert);
-      redirect(base_url("References"));
+      }   $this->session->set_flashdata("alert",$alert);
+          redirect(base_url("References"));
   }
-  public function isActiveSet($id)
-  {
+  public function isActiveSet($id){
 
       if($id){
         $isActive=($this->input->post("data")==="true") ? 1 : 0;
@@ -263,8 +265,7 @@ class References extends CI_Controller
         );
       }
     }
-  public function rankSet()
-  {
+  public function rankSet(){
       $data=$this->input->post("data");
       parse_str($data,$order);
       $items=$order["tr"];

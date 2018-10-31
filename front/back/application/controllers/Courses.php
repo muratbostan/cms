@@ -3,8 +3,7 @@
 class Courses extends CI_Controller
 {
   public $viewFolder="";
-  public function __construct()
-  {
+  public function __construct(){
     parent::__construct();
     $this->viewFolder="Courses_view";
     $this->load->model("Course_model");
@@ -13,8 +12,7 @@ class Courses extends CI_Controller
     }
 
   }
-  public function index()
-  {
+  public function index(){
     $viewData = new stdClass();
     //Tablodan veri getirilmesi
     $items=$this->Course_model->get_all(array(),"rank ASC");
@@ -25,15 +23,13 @@ class Courses extends CI_Controller
     $viewData->items=$items;
     $this->load->view("{$this->viewFolder}/{$viewData->subViewFolder}/index",$viewData);
   }
-  public function add_Courses()
-  {
+  public function add_Courses(){
     $viewData = new stdClass();
     $viewData->viewFolder=$this->viewFolder;
     $viewData->subViewFolder="add";
     $this->load->view("{$this->viewFolder}/{$viewData->subViewFolder}/index",$viewData);
   }
-  public function saved()
-  {
+  public function saved(){
     $this->load->library("form_validation");
     if($_FILES["img_url"]["name"] == ""){
 
@@ -119,8 +115,7 @@ class Courses extends CI_Controller
       $this->load->view("{$this->viewFolder}/{$viewData->subViewFolder}/index",$viewData);
     }
   }
-  public function update_Courses($id)
-  {
+  public function update_Courses($id){
     $viewData = new stdClass();
     $item=$this->Course_model->
     get(
@@ -133,8 +128,7 @@ class Courses extends CI_Controller
     $viewData->item=$item;
     $this->load->view("{$this->viewFolder}/{$viewData->subViewFolder}/index",$viewData);
   }
-  public function update($id)
-  {
+  public function update($id){
     $this->load->library("form_validation");
     $this->form_validation->set_rules("title", "Başlık", "required|trim");
     $this->form_validation->set_rules("event_date", "Eğitim Tarihi", "required|trim");
@@ -221,35 +215,47 @@ class Courses extends CI_Controller
       $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
   }
-  public function delete_Courses($id)
-  {
+  public function delete_Courses($id){
+    $fileName=$this->Course_model->get(
+      array(
+        "id" => $id
+      ));
     $delete=$this->Course_model->delete(
       array(
         "id" => $id
       ));
-
       if($delete)
       {
-        $alert =array(
-          "title" => "İşlem Başarılı..",
-          "text" => "Kayıt Başarılı Bir Şekilde Silindi..",
-          "type" => "success"
-        );
-
+        $img1="uploads/{$this->viewFolder}/255x157/$fileName->img_url";
+        $img2="uploads/{$this->viewFolder}/1140x705/$fileName->img_url";
+        if(unlink($img1) && unlink($img2)){
+          $alert =array(
+            "title" => "İşlem Başarılı..",
+            "text"  => "Fotoğraf Silme Başarılı Bir Şekilde Gerçekleşti..",
+            "type"  => "success"
+          );
+        }
+        else
+        {
+          $alert =array(
+            "title" => "İşlem Başarısız..",
+            "text"  => "Fotoğraf Silinirken Bir Hata Oluştu...",
+            "type"  => "error"
+          );
+        }
       }
       else
       {
         $alert =array(
           "title" => "İşlem Başarısız..",
-          "text" => "Kayıt Silme Sırasında Bir Hata Oluştu...",
-          "type" => "error"
+          "text"  => "Kayıt Silme Sırasında Bir Hata Oluştu...",
+          "type"  => "error"
         );
       }
       $this->session->set_flashdata("alert",$alert);
       redirect(base_url("Courses"));
   }
-  public function isActiveSet($id)
-  {
+  public function isActiveSet($id){
       if($id){
         $isActive=($this->input->post("data")==="true") ? 1 : 0;
 
@@ -263,8 +269,7 @@ class Courses extends CI_Controller
         );
       }
     }
-  public function rankSet()
-  {
+  public function rankSet(){
       $data=$this->input->post("data");
       parse_str($data,$order);
       $items=$order["tr"];

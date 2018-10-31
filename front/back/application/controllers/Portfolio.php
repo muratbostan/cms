@@ -4,8 +4,7 @@ class Portfolio extends CI_Controller
 {
     public $viewFolder = "";
 
-    public function __construct()
-    {
+    public function __construct(){
 
         parent::__construct();
 
@@ -20,7 +19,6 @@ class Portfolio extends CI_Controller
         }
 
     }
-
     public function index(){
 
         $viewData = new stdClass();
@@ -37,7 +35,6 @@ class Portfolio extends CI_Controller
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
-
     public function new_form(){
 
         $viewData = new stdClass();
@@ -55,7 +52,6 @@ class Portfolio extends CI_Controller
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 
     }
-
     public function save(){
 
         $this->load->library("form_validation");
@@ -133,7 +129,6 @@ class Portfolio extends CI_Controller
             // Hata ekranda gösterilir...
 
     }
-
     public function update_form($id){
 
         $viewData = new stdClass();
@@ -160,7 +155,6 @@ class Portfolio extends CI_Controller
 
 
     }
-
     public function update($id){
 
         $this->load->library("form_validation");
@@ -253,7 +247,6 @@ class Portfolio extends CI_Controller
         // Hata ekranda gösterilir...
 
     }
-
     public function delete($id){
 
         $delete = $this->portfolio_model->delete(
@@ -287,34 +280,6 @@ class Portfolio extends CI_Controller
 
 
     }
-
-    public function imageDelete($id, $parent_id){
-
-        $fileName = $this->portfolio_image_model->get(
-            array(
-                "id"    => $id
-            )
-        );
-
-        $delete = $this->portfolio_image_model->delete(
-            array(
-                "id"    => $id
-            )
-        );
-
-
-        // TODO Alert Sistemi Eklenecek...
-        if($delete){
-
-            unlink("uploads/{$this->viewFolder}/$fileName->img_url");
-
-            redirect(base_url("portfolio/image_form/$parent_id"));
-        } else {
-            redirect(base_url("portfolio/image_form/$parent_id"));
-        }
-
-    }
-
     public function isActiveSetter($id){
 
         if($id){
@@ -331,7 +296,6 @@ class Portfolio extends CI_Controller
             );
         }
     }
-
     public function imageIsActiveSetter($id){
 
         if($id){
@@ -348,7 +312,6 @@ class Portfolio extends CI_Controller
             );
         }
     }
-
     public function isCoverSetter($id, $parent_id){
 
         if($id && $parent_id){
@@ -396,7 +359,6 @@ class Portfolio extends CI_Controller
 
         }
     }
-
     public function rankSetter(){
 
 
@@ -421,7 +383,6 @@ class Portfolio extends CI_Controller
         }
 
     }
-
     public function imageRankSetter(){
 
 
@@ -446,7 +407,44 @@ class Portfolio extends CI_Controller
         }
 
     }
+    public function imageDelete($id, $parent_id){
 
+        $fileName = $this->portfolio_image_model->get(
+            array(
+                "id"    => $id
+            )
+        );
+        $delete = $this->portfolio_image_model->delete(
+            array(
+                "id"    => $id
+            )
+        );
+        if($delete){
+
+            $img1="uploads/{$this->viewFolder}/255x157/$fileName->img_url";
+            $img2="uploads/{$this->viewFolder}/1080x426/$fileName->img_url";
+            if(unlink($img1) && unlink($img2)){
+              $alert =array(
+                "title" => "İşlem Başarılı..",
+                "text" => "Fotoğraf Silme Başarılı Bir Şekilde Gerçekleşti..",
+                "type" => "success"
+              );
+            }
+            else
+            {
+              $alert =array(
+                "title" => "İşlem Başarısız..",
+                "text" => "Fotoğraf Silinirken Bir Hata Oluştu...",
+                "type" => "error"
+              );
+            }
+            $this->session->set_flashdata("alert",$alert);
+            redirect(base_url("portfolio/image_form/$parent_id"));
+        } else {
+            redirect(base_url("portfolio/image_form/$parent_id"));
+        }
+
+    }
     public function image_form($id){
 
         $viewData = new stdClass();
@@ -469,7 +467,6 @@ class Portfolio extends CI_Controller
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
-
     public function image_upload($id){
 
       $file_name = convertToSEO(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
@@ -496,7 +493,6 @@ class Portfolio extends CI_Controller
       }
 
     }
-
     public function refresh_image_list($id){
 
         $viewData = new stdClass();

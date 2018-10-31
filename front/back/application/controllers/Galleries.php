@@ -246,6 +246,11 @@ class Galleries extends CI_Controller
           }
   public function fileDelete($id, $parent_id, $gallery_type){
     $modelName = ($gallery_type == "image") ? "image_model" : "file_model";
+    $folderName=$this->Gallery_model->get(
+      array(
+        "id" => $parent_id
+      )
+    );
     $fileName = $this->$modelName->get(
       array(
         "id"    => $id
@@ -257,11 +262,41 @@ class Galleries extends CI_Controller
       )
     );
     if($delete){
-      unlink($fileName->url);
-      redirect(base_url("galleries/upload_form/$parent_id"));
+
+      if($gallery_type=="image"){
+        $img1="uploads/{$this->viewFolder}/image/$folderName->folder_name/252x156/$fileName->url";
+        $img2="uploads/{$this->viewFolder}/image/$folderName->folder_name/350x216/$fileName->url";
+        $img3="uploads/{$this->viewFolder}/image/$folderName->folder_name/851x606/$fileName->url";
+        if(unlink($img1) && unlink($img2) && unlink($img3)){
+          $alert =array(
+            "title" => "İşlem Başarılı..",
+            "text"  => "Fotoğraf Silme Başarılı Bir Şekilde Gerçekleşti..",
+            "type"  => "success"
+          );
+        }
+        else
+        {
+          $alert =array(
+            "title" => "İşlem Başarısız..",
+            "text"  => "Fotoğraf Silinirken Bir Hata Oluştu...",
+            "type"  => "error"
+          );
+        }
+      }
+      else{
+        $file="uploads/{$this->viewFolder}/file/$folderName->folder_name/$fileName->url";
+        unlink($file);
+         }
+
     } else {
-      redirect(base_url("galleries/upload_form/$parent_id"));
+      $alert =array(
+        "title" => "İşlem Başarısız..",
+        "text"  => "Silinirken Bir Hata Oluştu...",
+        "type"  => "error"
+      );
     }
+    $this->session->set_flashdata("alert",$alert);
+    redirect(base_url("galleries/upload_form/$parent_id"));
   }
   public function isActiveSet($id)
               {

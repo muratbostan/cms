@@ -258,19 +258,33 @@ class News extends CI_Controller
         }
       }
   public function delete_news($id){
+    $fileName=$this->News_model->get(
+      array(
+        "id" => $id
+      ));
     $delete=$this->News_model->delete(
       array(
         "id" => $id
       ));
-
       if($delete)
       {
-        $alert =array(
-          "title" => "İşlem Başarılı..",
-          "text" => "Kayıt Başarılı Bir Şekilde Silindi..",
-          "type" => "success"
-        );
-
+        $img1="uploads/{$this->viewFolder}/513x289/$fileName->img_url";
+        $img2="uploads/{$this->viewFolder}/730x411/$fileName->img_url";
+        if(unlink($img1) && unlink($img2)){
+          $alert =array(
+            "title" => "İşlem Başarılı..",
+            "text" => "Fotoğraf Silme Başarılı Bir Şekilde Gerçekleşti..",
+            "type" => "success"
+          );
+        }
+        else
+        {
+          $alert =array(
+            "title" => "İşlem Başarısız..",
+            "text" => "Fotoğraf Silinirken Bir Hata Oluştu...",
+            "type" => "error"
+          );
+        }
       }
       else
       {
