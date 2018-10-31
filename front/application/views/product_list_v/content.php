@@ -1,5 +1,5 @@
 <section class="main-container">
-    <div class="container">
+    <div class="container margin">
         <h1 class="page-title">Ürün Listesi</h1>
         <p>Kullandığımız ürünlerin listesini aşağıda görebilirsiniz</p>
         <div class="separator-2"></div>
@@ -14,7 +14,7 @@
 
                             <?php
                                 $image = get_product_cover_image($product->id);
-                                $image = ($image) ? base_url("panel/uploads/product_v/$image") : base_url("assets/images/portfolio-1.jpg");
+                                $image = ($image) ? get_picture("product_view",$image,"348x215") : base_url("assets/images/portfolio-1.jpg");
                             ?>
 
                             <img src="<?php echo $image; ?>" alt="<?php echo $product->title; ?>">

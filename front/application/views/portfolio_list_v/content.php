@@ -1,7 +1,7 @@
 <!-- ================ -->
 <section class="main-container">
 
-    <div class="container">
+    <div class="container margin">
         <div class="row">
 
             <!-- main start -->

@@ -15,50 +15,56 @@ class Home extends CI_Controller {
       //  $deneme1 = $this->settings_model->get();
         //print_r($deneme1); die();
     }
-
     public function index(){
 
       // Anasayfa...
       $viewData = new stdClass();
 
-        $this->load->model("slide_model");
-        $this->load->model("reference_model");
-        $this->load->model("service_model");
-        $this->load->model("portfolio_model");
+      $this->load->model("slide_model");
+      $this->load->model("reference_model");
+      $this->load->model("service_model");
+      $this->load->model("portfolio_model");
+      $this->load->model("testimonial_model");
 
-        $slides = $this->slide_model->get_all(
-            array(
-                "isActive"  => 1
-            ), "rank ASC"
-        );
+      $slides = $this->slide_model->get_all(
+        array(
+          "isActive"  => 1
+        ), "rank ASC"
+      );
 
-        $references = $this->reference_model->get_all(
-            array(
-                "isActive"  => 1
-            ), "rank ASC"
-        );
+      $references = $this->reference_model->get_all(
+        array(
+          "isActive"  => 1
+        ), "rank ASC"
+      );
 
-        $services = $this->service_model->get_all(
-            array(
-                "isActive"  => 1
-            ), "rank ASC"
-        );
+      $services = $this->service_model->get_all(
+        array(
+          "isActive"  => 1
+        ), "rank ASC"
+      );
 
-        $portfolios = $this->portfolio_model->get_all(
-            array(
-                "isActive"  => 1
-            ), "rank ASC"
-        );
+      $portfolios = $this->portfolio_model->get_all(
+        array(
+          "isActive"  => 1
+        ), "rank ASC"
+      );
+
+      $testimonials = $this->testimonial_model->get_all(
+        array(
+          "isActive"  => 1
+        ), "rank ASC"
+      );
 
 
-        $viewData->portfolios   = $portfolios;
-        $viewData->slides       = $slides;
-        $viewData->references   = $references;
-        $viewData->services     = $services;
-        $viewData->viewFolder   = "home_v";
+      $viewData->portfolios   = $portfolios;
+      $viewData->slides       = $slides;
+      $viewData->references   = $references;
+      $viewData->services     = $services;
+      $viewData->testimonials = $testimonials;
+      $viewData->viewFolder   = "home_v";
 
-        $this->load->view($viewData->viewFolder, $viewData);
-
+      $this->load->view($viewData->viewFolder, $viewData);
 
     }
     public function product_list(){
@@ -457,8 +463,7 @@ class Home extends CI_Controller {
       }
 
       /************** Galeri için kullanilan metodlar **************/
-
-   public function image_gallery_list(){
+    public function image_gallery_list(){
 
         $viewData = new stdClass();
         $viewData->viewFolder    = "galleries_v";

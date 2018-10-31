@@ -1,7 +1,7 @@
 <!-- ================ -->
 <section class="main-container">
 
-    <div class="container">
+    <div class="container margin">
         <div class="row">
 
             <!-- main start -->
@@ -25,7 +25,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="overlay-container">
-                                        <img src="<?php echo base_url("back/uploads/services_view/$service->img_url");?>" alt="<?php echo $service->title; ?>">
+                                        <img src="<?php echo get_picture("services_view",$service->img_url,"555x343");?>" alt="<?php echo $service->title; ?>">
                                         <div class="overlay-to-top">
                                             <p class="small margin-clear"><em><?php echo $service->title; ?></em></p>
                                         </div>
@@ -58,7 +58,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="overlay-container">
-                                        <img src="<?php echo base_url("back/uploads/services_view/$service->img_url");?>" alt="<?php echo $service->title; ?>">
+                                      <img src="<?php echo get_picture("services_view",$service->img_url,"555x343");?>" alt="<?php echo $service->title; ?>">
                                         <div class="overlay-to-top">
                                             <p class="small margin-clear"><em><?php echo $service->title; ?></em></p>
                                         </div>

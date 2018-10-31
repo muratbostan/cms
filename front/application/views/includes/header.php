@@ -1,33 +1,19 @@
 <?php $settings = get_settings(); ?>
 
 <div class="header-container">
-    <!-- header-top start -->
-    <!-- classes:  -->
-    <!-- "dark": dark version of header top e.g. class="header-top dark" -->
-    <!-- "colored": colored version of header top e.g. class="header-top colored" -->
-    <!-- ================ -->
-     
-    <!-- header-top end -->
-
-    <!-- header start -->
-    <!-- classes:  -->
-    <!-- "fixed": enables fixed navigation mode (sticky menu) e.g. class="header fixed clearfix" -->
-    <!-- "fixed-desktop": enables fixed navigation only for desktop devices e.g. class="header fixed fixed-desktop clearfix" -->
-    <!-- "fixed-all": enables fixed navigation only for all devices desktop and mobile e.g. class="header fixed fixed-desktop clearfix" -->
-    <!-- "dark": dark version of header e.g. class="header dark clearfix" -->
-    <!-- "centered": mandatory class for the centered logo layout -->
-    <!-- ================ -->
     <header class="header fixed fixed-desktop clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-md-auto hidden-md-down pl-3">
-                    <!-- header-first start -->
-                    <!-- ================ -->
+
                     <div class="header-first clearfix">
 
                         <!-- logo -->
                         <div id="logo" class="logo">
-                            <a href="<?php echo base_url(); ?>"><img id="logo_img" src="<?php echo base_url("assets/images");?>/logo_blue.png" alt="The Project"></a>
+                            <a href="<?php echo base_url(); ?>">
+                              <img id="logo_img"
+                              src="<?php echo get_picture("settings_view",$settings->logo,"150x35") ?>"
+                              alt="<?php echo $settings->company_name ?>"></a>
                         </div>
 
                         <!-- name-and-slogan -->
@@ -56,7 +42,10 @@
 
                                     <!-- logo -->
                                     <div id="logo-mobile" class="logo">
-                                        <a href="<?php echo base_url(); ?>"><img id="logo-img-mobile" src="<?php echo base_url("assets/images");?>/logo_blue.png" alt="<?php echo $settings->company_name; ?>"></a>
+                                      <a href="<?php echo base_url(); ?>">
+                                        <img id="logo_img"
+                                        src="<?php echo get_picture("settings_view",$settings->logo,"300x70") ?>"
+                                        alt="<?php echo $settings->company_name ?>"></a>
                                     </div>
 
                                     <!-- name-and-slogan -->

@@ -1,6 +1,6 @@
 <section class="main-container">
 
-    <div class="container">
+    <div class="container margin">
         <div class="row">
 
             <!-- main start -->
@@ -31,7 +31,7 @@
                                 <?php if($news->news_type == "image") { ?>
 
                                     <div class="overlay-container text-center">
-                                        <img src="<?php echo base_url("panel/uploads/news_v/$news->img_url"); ?>" alt="<?php echo $news->url; ?>">
+                                        <img src="<?php echo get_picture("news_view",$news->img_url,"513x289"); ?>" alt="<?php echo $news->url; ?>">
                                         <a class="overlay-link" href="<?php echo base_url("haber/$news->url"); ?>"><i class="fa fa-link"></i></a>
                                     </div>
 

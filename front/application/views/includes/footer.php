@@ -10,7 +10,13 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="footer-content">
-                            <div class="logo-footer"><img id="logo-footer" src="images/logo_blue.png" alt=""></div>
+                          <div id="logo" class="logo">
+                              <a href="<?php echo base_url(); ?>">
+                                <img id="logo_img"
+                                src="<?php echo get_picture("settings_view",$settings->logo,"150x35") ?>"
+                                alt="<?php echo $settings->company_name ?>"></a>
+                          </div>
+
                             <p>
                                 <?php echo $settings->mission ; ?>
                             </p>

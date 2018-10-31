@@ -1,6 +1,6 @@
 <!-- ================ -->
-<section class="main-container">
-  <div class="container">
+<section class="main-container ">
+  <div class="container margin">
     <div class="row">
       <!-- main start -->
       <!-- ================ -->
@@ -18,7 +18,8 @@
               <?php if(($index % 2) == 0) { ?>
                 <div class="col-lg-6">
                   <div class="overlay-container">
-                    <img src="<?php echo base_url("back/uploads/references_view/$reference->img_url");?>" alt="<?php echo $reference->title; ?>">
+                    <img src="<?php echo get_picture("references_view",$reference->img_url,"555x343");?>"
+                    alt="<?php echo $reference->title; ?>">
                     <div class="overlay-to-top">
                       <p class="small margin-clear"><em><?php echo $reference->title; ?></em></p>
                     </div>
@@ -47,7 +48,8 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="overlay-container">
-                    <img src="<?php echo base_url("back/uploads/references_view/$reference->img_url");?>" alt="<?php echo $reference->title; ?>">
+                      <img src="<?php echo get_picture("references_view",$reference->img_url,"555x343");?>"
+                    alt="<?php echo $reference->title; ?>">
                     <div class="overlay-to-top">
                       <p class="small margin-clear"><em><?php echo $reference->title; ?></em></p>
                     </div>

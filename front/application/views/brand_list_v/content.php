@@ -1,7 +1,7 @@
 <!-- ================ -->
 <section class="main-container">
 
-    <div class="container">
+    <div class="container margin">
         <div class="row">
 
             <!-- main start -->
@@ -22,7 +22,8 @@
                         <div class="col-sm-4">
                             <div class="image-box shadow text-center mb-20">
                                 <div class="overlay-container">
-                                    <img src="<?php echo base_url("panel/uploads/brands_v/$brand->img_url");?>" alt="<?php $brand->title; ?>">
+                                    <img src="<?php echo get_picture("brands_view",$brand->img_url,"350x216");?>"
+                                    alt="<?php $brand->title; ?>">
                                     <div class="overlay-top">
                                         <div class="text"></div>
                                     </div>

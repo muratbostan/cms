@@ -1,18 +1,5 @@
-
-<!-- banner start -->
-<!-- ================ -->
 <div class="banner dark-translucent-bg" style="background-image:url('<?php echo base_url("assets/images");?>/page-about-banner-1.jpg'); background-position: 50% 27%;">
-    <!-- breadcrumb start -->
-    <!-- ================ -->
-<!--    <div class="breadcrumb-container">-->
-<!--        <div class="container">-->
-<!--            <ol class="breadcrumb">-->
-<!--                <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="index.html">Home</a></li>-->
-<!--                <li class="active">Page About</li>-->
-<!--            </ol>-->
-<!--        </div>-->
-<!--    </div>-->
-    <!-- breadcrumb end -->
+
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center col-md-offset-2 pv-20">
@@ -108,4 +95,3 @@
 
 </section>
 <!-- main-container end -->
-

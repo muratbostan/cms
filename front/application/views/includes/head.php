@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <title><?php echo $settings->company_name . " | " . $settings->slogan; ?></title>
 <meta name="description" content="">
-<meta name="author" content="gokhan kandemir">
+<meta name="author" content="DreamOfCosmos">
 
 <!-- Mobile Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

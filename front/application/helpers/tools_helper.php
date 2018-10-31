@@ -120,7 +120,7 @@ function get_settings(){
     $t->session->set_userdata("settings", $settings);
     return $settings;
   }
-  function get_picture($path = "", $picture = "", $resolution = "50x50"){
+function get_picture($path = "", $picture = "", $resolution = "50x50"){
     if($picture != ""){
 
       if(file_exists(FCPATH . "back/uploads/$path/$resolution/$picture")){
