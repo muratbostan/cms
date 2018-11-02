@@ -21,8 +21,12 @@ $('.accordian-body').on('show.bs.collapse', function () {
 
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12"> ,
     <div class="widget p-lg">
+    <h3>Projenin Amacı </h3>
+    <p> İçerik yönetim sistemi oluşturma,Önyüzde bulunan içerikleri ve ayarları yönetim sistemi ile dinamik olarak değiştirmek.  </p>
+  </div>
+      <div class="widget p-lg">
       <table class="table table-hover table-striped table-bordered" style="border-collapse:collapse;">
         <thead>
           <th>Panel Adı</th>
